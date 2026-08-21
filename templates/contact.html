@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p class="lead">Looking for reliable fire safety, security or surveillance solutions? Tell us about your requirement and our team will get in touch with you.</p>
+  </div>
+</section>
+
+<section class="section-padding" id="enquiry">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-7">
+        <h2 class="h4 mb-3">Send Us an Enquiry</h2>
+        {% include "includes/enquiry_form.html" %}
+      </div>
+      <div class="col-lg-5">
+        <div class="contact-info-card">
+          <h2 class="h4">HY-FY Technology</h2>
+          <p><i class="bi bi-geo-alt"></i> {{ COMPANY_ADDRESS }}</p>
+          <p><i class="bi bi-telephone"></i> <a href="tel:{{ COMPANY_PHONE }}">{{ COMPANY_PHONE }}</a></p>
+          <p><i class="bi bi-envelope"></i> <a href="mailto:{{ COMPANY_EMAIL }}">{{ COMPANY_EMAIL }}</a></p>
+          <p><i class="bi bi-whatsapp"></i> <a href="https://wa.me/{{ WHATSAPP_NUMBER }}" target="_blank" rel="noopener">WhatsApp Us</a></p>
+
+          {% if GOOGLE_MAPS_EMBED_URL %}
+          <div class="contact-map mt-3 rounded-4 overflow-hidden">
+            <iframe src="{{ GOOGLE_MAPS_EMBED_URL }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="HY-FY Technology location map"></iframe>
+          </div>
+          {% endif %}
+          <a href="https://www.google.com/maps/search/?api=1&query={{ COMPANY_ADDRESS|urlencode }}" target="_blank" rel="noopener" class="btn btn-outline-primary mt-3">Get Directions &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

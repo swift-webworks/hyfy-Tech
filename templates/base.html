@@ -1,0 +1,97 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block meta_title %}{{ meta_title|default:SITE_NAME }}{% endblock %}</title>
+<meta name="description" content="{% block meta_description %}{{ meta_description|default:'Fire alarm, CCTV, access control and security system installation, repair and maintenance in Chennai.' }}{% endblock %}">
+<link rel="canonical" href="{{ SITE_URL }}{{ request.path }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{% block og_title %}{{ meta_title|default:SITE_NAME }}{% endblock %}">
+<meta property="og:description" content="{{ meta_description|default:'Fire alarm, CCTV, access control and security system installation, repair and maintenance in Chennai.' }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ SITE_URL }}{{ request.path }}">
+
+<link rel="icon" href="{% static 'img/favicon.png' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "HY-FY Technology",
+  "image": "{{ SITE_URL }}{% static 'img/logo.png' %}",
+  "telephone": "{{ COMPANY_PHONE }}",
+  "email": "{{ COMPANY_EMAIL }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ COMPANY_ADDRESS }}",
+    "addressLocality": "Chennai",
+    "addressRegion": "Tamil Nadu",
+    "addressCountry": "IN"
+  },
+  "url": "{{ SITE_URL }}",
+  "areaServed": "Chennai, Tamil Nadu"
+}
+</script>
+{% endblock %}
+
+{% if GOOGLE_ANALYTICS_ID %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS_ID }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ GOOGLE_ANALYTICS_ID }}');
+</script>
+{% endif %}
+</head>
+<body>
+
+<div id="preloader" aria-hidden="true">
+  <div class="preloader-beacon"></div>
+  <div class="preloader-brand">HY-FY <span>TECHNOLOGY</span></div>
+</div>
+
+{% include "includes/navbar.html" %}
+
+<main>
+  {% if messages %}
+    <div class="container mt-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% block content %}{% endblock %}
+</main>
+
+{% include "includes/footer.html" %}
+
+<div class="fab-menu" id="fabMenu">
+  <div class="fab-options">
+    <a href="https://wa.me/{{ WHATSAPP_NUMBER }}" target="_blank" rel="noopener" class="fab-option fab-whatsapp" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+    <a href="tel:{{ COMPANY_PHONE }}" class="fab-option fab-call" aria-label="Call us"><i class="bi bi-telephone-fill"></i></a>
+    <a href="{% url 'core:contact' %}#enquiry" class="fab-option fab-quote" aria-label="Request a quote"><i class="bi bi-file-earmark-text-fill"></i></a>
+  </div>
+  <button type="button" class="fab-toggle" id="fabToggle" aria-label="Open contact options" aria-expanded="false">
+    <i class="bi bi-plus-lg"></i>
+  </button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

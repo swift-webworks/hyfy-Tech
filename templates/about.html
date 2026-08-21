@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>About HY-FY Technology</h1>
+    <p class="lead">Fire safety, security and surveillance solutions built on trust and technical expertise.</p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-7">
+        <h2 class="h3">Who We Are</h2>
+        <p>
+          HY-FY Technology supports hospitals, schools, offices, industries, hotels, apartments,
+          government organizations, commercial buildings and retail stores with fire alarm, CCTV,
+          access control and other safety systems &mdash; from first installation through ongoing
+          maintenance and support.
+        </p>
+        <h2 class="h3 mt-4">What We Do</h2>
+        <p>
+          We install, maintain, repair and service security and safety systems, and offer
+          Annual Maintenance Contracts (AMC) so our clients never have to worry about system
+          reliability.
+        </p>
+        <h2 class="h3 mt-4">Why Clients Choose Us</h2>
+        <p>
+          Every recommendation starts with what a facility actually needs &mdash; not the most
+          expensive option. Our technicians are trained on the brands we install, and our support
+          team responds quickly when something needs attention.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <img src="{% static 'img/about-team.jpg' %}" alt="HY-FY Technology technician at work" class="img-fluid rounded-4 shadow">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding bg-navy text-white">
+  <div class="container">
+    <h2 class="section-title text-center">Our History</h2>
+    <div class="row g-4 mt-2 text-center">
+      <div class="col-md-3"><div class="timeline-step"><h3 class="h5">Beginning</h3><p class="small text-white-50">Founded to serve Chennai's growing need for reliable fire and security systems.</p></div></div>
+      <div class="col-md-3"><div class="timeline-step"><h3 class="h5">Growth</h3><p class="small text-white-50">Expanded our technician teams and service coverage across Tamil Nadu.</p></div></div>
+      <div class="col-md-3"><div class="timeline-step"><h3 class="h5">Major Projects</h3><p class="small text-white-50">Delivered installations for hospitals, industries and institutional clients.</p></div></div>
+      <div class="col-md-3"><div class="timeline-step"><h3 class="h5">Present &amp; Future</h3><p class="small text-white-50">Continuing to invest in technical training, faster response and better service.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <h2 class="section-title text-center">Discover Our Experience</h2>
+    <div class="row g-3 mt-2">
+      {% for card in trust_cards %}
+      <div class="col-sm-6 col-lg-4">
+        <div class="trust-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="trust-card-cover">{{ card.closed_label }}</div>
+          <div class="trust-card-content">
+            <strong>{{ card.headline }}</strong>
+            {% if card.detail %}<p class="small mb-0">{{ card.detail }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center text-muted">Experience highlights will appear here once added via Django Admin.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-padding bg-light-section">
+  <div class="container">
+    <h2 class="section-title text-center">Our Team</h2>
+  </div>
+  <div class="marquee mt-4">
+    <div class="marquee-track">
+      {% for member in team_members %}
+        <div class="gallery-item">
+          <img src="{{ member.image.url }}" alt="{{ member.name|default:member.caption }}" loading="lazy">
+          {% if member.caption %}<p>{{ member.caption }}</p>{% endif %}
+        </div>
+      {% empty %}
+        <div class="marquee-item text-muted">Team photos will appear here once added via Django Admin.</div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-padding text-center">
+  <div class="container">
+    <a href="{% url 'core:contact' %}" class="btn btn-cta btn-lg">Request a Quote</a>
+  </div>
+</section>
+{% endblock %}

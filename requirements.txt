@@ -1,0 +1,7 @@
+Django>=5.0,<5.3
+django-environ>=0.11
+whitenoise>=6.6
+Pillow>=10.3
+requests>=2.31
+gunicorn>=22.0
+psycopg2-binary>=2.9  # required only when DATABASE_URL points to PostgreSQL

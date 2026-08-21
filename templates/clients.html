@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>Our Clients</h1>
+    <p class="lead">Trusted by hospitals, schools, offices, industries and institutions across Chennai.</p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <h2 class="section-title text-center">Live Clients</h2>
+  </div>
+  <div class="marquee-track">
+      {% for logo in live_clients %}
+        <div class="marquee-item"><img src="{{ logo.logo.url }}" alt="{{ logo.client_name }}" loading="lazy"></div>
+      {% empty %}
+        <div class="marquee-item text-muted">Live client logos will appear here once added via Django Admin.</div>
+      {% endfor %}
+      {% for logo in live_clients %}
+        <div class="marquee-item" aria-hidden="true"><img src="{{ logo.logo.url }}" alt="" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+ <div class="marquee marquee-reverse mt-3">
+    <div class="marquee-track">
+       {% for logo in live_clients %}
+        <div class="marquee-item"><img src="{{ logo.logo.url }}" alt="{{ logo.client_name }}" loading="lazy"></div>
+      {% empty %}
+        <div class="marquee-item text-muted">Live client logos will appear here once added via Django Admin.</div>
+      {% endfor %}
+      {% for logo in live_clients %}
+        <div class="marquee-item" aria-hidden="true"><img src="{{ logo.logo.url }}" alt="" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+
+<section class="section-padding bg-light-section">
+  <div class="container">
+    <h2 class="section-title text-center">Previous Clients</h2>
+  </div>
+  <div class="marquee mt-4">
+    <div class="marquee-track">
+      {% for logo in previous_clients %}
+        <div class="marquee-item"><img src="{{ logo.logo.url }}" alt="{{ logo.client_name }}" loading="lazy"></div>
+      {% empty %}
+        <div class="marquee-item text-muted">Previous client logos will appear here once added via Django Admin.</div>
+      {% endfor %}
+      {% for logo in previous_clients %}
+        <div class="marquee-item" aria-hidden="true"><img src="{{ logo.logo.url }}" alt="" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="marquee marquee-reverse mt-3">
+    <div class="marquee-track">
+       {% for logo in previous_clients %}
+        <div class="marquee-item"><img src="{{ logo.logo.url }}" alt="{{ logo.client_name }}" loading="lazy"></div>
+      {% empty %}
+        <div class="marquee-item text-muted">Live client logos will appear here once added via Django Admin.</div>
+      {% endfor %}
+      {% for logo in previous_clients %}
+        <div class="marquee-item" aria-hidden="true"><img src="{{ logo.logo.url }}" alt="" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-padding text-center">
+  <div class="container">
+    <a href="{% url 'core:contact' %}" class="btn btn-cta btn-lg">Request a Quote</a>
+  </div>
+</section>
+{% endblock %}

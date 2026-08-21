@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <h1>Our Services</h1>
+    <p class="lead">Fire alarm, CCTV, access control, public address, fire extinguisher and other safety systems &mdash; installation, repair, maintenance and AMC.</p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="filter-scroll mb-4">
+      <a href="{% url 'core:services' %}" class="filter-pill {% if active_category == 'all' %}active{% endif %}">All</a>
+      {% for category in categories %}
+        <a href="?category={{ category.slug }}" class="filter-pill {% if active_category == category.slug %}active{% endif %}">{{ category.name }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="row g-4">
+      {% for service in services_list %}
+      <div class="col-md-4">
+        <div class="service-card h-100">
+          <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-card-img" loading="lazy">
+          <div class="service-card-body">
+            <span class="badge-category">{{ service.category.name }}</span>
+            <h2 class="h5 mt-2">{{ service.name }}</h2>
+            <p>{{ service.short_description }}</p>
+            {% if service.brands.exists %}
+              <p class="small text-muted mb-2">
+                Brands: {% for b in service.brands.all|slice:":4" %}{{ b.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                {% if service.brands.count > 4 %}&hellip;{% endif %}
+              </p>
+            {% endif %}
+            <a href="{{ service.get_absolute_url }}" class="explore-link">Learn More &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center text-muted">Services will appear here once added via Django Admin.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

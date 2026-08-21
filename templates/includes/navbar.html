@@ -1,0 +1,34 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg sticky-top hyfy-navbar" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'core:home' %}">
+      HY<span class="text-accent">-FY</span> <small>TECHNOLOGY</small>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="{% url 'core:services' %}" id="servicesDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+          <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+            {% for cat in nav_categories %}
+              <li><a class="dropdown-item" href="{% url 'core:services' %}?category={{ cat.slug }}">{{ cat.name }}</a></li>
+            {% empty %}
+              <li><a class="dropdown-item" href="{% url 'core:services' %}">All Services</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:about' %}">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:clients' %}">Our Clients</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'core:contact' %}">Contact Us</a></li>
+        <li class="nav-item ms-lg-3">
+          <a class="btn btn-cta" href="{% url 'core:contact' %}">Request a Quote</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

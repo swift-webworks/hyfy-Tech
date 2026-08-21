@@ -1,0 +1,35 @@
+<form method="post" action="{{ request.path }}#enquiry" novalidate class="enquiry-form">
+  {% csrf_token %}
+  <div class="row g-3">
+    <div class="col-md-6">{{ form.coordinator_name }}</div>
+    <div class="col-md-6">{{ form.email }}</div>
+
+    <div class="col-md-6">{{ form.phone_number }}</div>
+    <div class="col-md-6">{{ form.required_date }}</div>
+
+    <div class="col-md-6">{{ form.facility_type }}</div>
+    <div class="col-md-6">{{ form.service_required }}</div>
+
+    <div class="col-md-6">{{ form.brand }}</div>
+    <div class="col-md-6">{{ form.location }}</div>
+
+    <div class="col-12">{{ form.message }}</div>
+
+    <!-- Honeypot: hidden from real users via CSS, catches bots -->
+    <div class="hp-field" aria-hidden="true">{{ form.website }}</div>
+    {{ form.form_rendered_at }}
+
+    {% if form.non_field_errors %}
+      <div class="col-12"><div class="alert alert-danger py-2 mb-0">{{ form.non_field_errors }}</div></div>
+    {% endif %}
+    {% for field in form %}
+      {% if field.errors %}
+        <div class="col-12"><small class="text-danger">{{ field.label }}: {{ field.errors|striptags }}</small></div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-cta btn-lg px-5">Submit Enquiry</button>
+    </div>
+  </div>
+</form>

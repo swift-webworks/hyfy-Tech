@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-6 order-2 order-lg-1">
+        <span class="hero-eyebrow">Chennai's Trusted Fire &amp; Security Specialists</span>
+        <h1 class="hero-title">Fire Alarm, CCTV &amp; <em>Security Systems</em></h1>
+        <p class="lead">Installed, tested and maintained by certified technicians — protecting hospitals, offices and
+          industries across Chennai.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#enquiry" class="btn btn-cta btn-lg">Request a Quote</a>
+          <a href="{% url 'core:services' %}" class="btn btn-outline-light btn-lg">Explore Our Services</a>
+        </div>
+      </div>
+            <div class="col-lg-6 order-1 order-lg-2">
+        <div class="hero-visual">
+          <video class="img-fluid rounded-4 shadow" autoplay loop muted playsinline poster="{% static 'img/hero-security.jpg' %}">
+            <source src="{% static 'video/ani_vdo.mp4' %}" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-padding">
+  <div class="container">
+    <h2 class="section-title text-center">Our Core Services</h2>
+    <div class="row g-4 mt-2">
+      {% for service in featured_services %}
+      <div class="col-md-4">
+        <div class="service-card h-100">
+          <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-card-img" loading="lazy">
+          <div class="service-card-body">
+            <h3>{{ service.name }}</h3>
+            <p>{{ service.short_description }}</p>
+            <a href="{{ service.get_absolute_url }}" class="explore-link">Explore Service &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-center text-muted">Services will appear here once added via Django Admin.</p>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{% url 'core:services' %}" class="btn btn-outline-primary">Explore All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section-padding bg-navy text-white">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-5">
+        <h2 class="section-title">About HY-FY Technology</h2>
+        <p>
+          HY-FY Technology is a Chennai-based security and fire-safety solutions provider,
+          delivering installation, maintenance, repair and Annual Maintenance Contracts (AMC)
+          for organizations that cannot compromise on safety.
+        </p>
+        <h3 class="h5 mt-4">Our History</h3>
+        <p class="text-white-50">
+          From our first installations to today, our focus has stayed the same: dependable
+          systems, backed by a team that shows up when it matters.
+        </p>
+        <a href="{% url 'core:about' %}" class="btn btn-outline-light mt-2">Read More About Us</a>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {% for card in trust_cards %}
+          <div class="col-sm-6">
+            <div class="trust-card" tabindex="0" role="button" aria-expanded="false">
+              <div class="trust-card-cover">{{ card.closed_label }}</div>
+              <div class="trust-card-content">
+                <strong>{{ card.headline }}</strong>
+                {% if card.detail %}<p class="small mb-0">{{ card.detail }}</p>{% endif %}
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <p class="text-white-50">Trust highlights will appear here once added via Django Admin.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section class="section-padding">
+  <div class="container">
+    <h2 class="section-title text-center mb-3">Our Clients</h2><br>
+  </div>
+  <div class="marquee-track">
+    {% for logo in client_logos %}
+    <div class="marquee-item"><img src="{{ logo.logo.url }}" alt="{{ logo.client_name }}" loading="lazy"></div>
+    {% empty %}
+    <div class="marquee-item text-muted">Client logos will appear here once added via Django Admin.</div>
+    {% endfor %}
+    {% for logo in client_logos %}
+    <div class="marquee-item" aria-hidden="true"><img src="{{ logo.logo.url }}" alt="" loading="lazy"></div>
+    {% endfor %}
+  </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section-padding bg-light-section">
+  <div class="container">
+    <h2 class="section-title text-center">Project Gallery</h2><br>
+  </div>
+  <div class="marquee-track">
+    {% for img in gallery_images %}
+    <div class="gallery-item">
+      <img src="{{ img.image.url }}" alt="{{ img.caption }}" loading="lazy">
+      <p>{{ img.caption }}</p>
+    </div>
+    {% empty %}
+    <div class="marquee-item text-muted">Project photos will appear here once added via Django Admin.</div>
+    {% endfor %}
+    {% for img in gallery_images %}
+    <div class="gallery-item" aria-hidden="true">
+      <img src="{{ img.image.url }}" alt="" loading="lazy">
+      <p>{{ img.caption }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+</section>
+
+<!-- ENQUIRY -->
+<section class="section-padding bg-wine text-white" id="enquiry">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="section-title text-center">Request a Quote</h2>
+        <p class="text-center text-white-75 mb-4">Tell us about your requirement and our team will get back to you.</p>
+        {% include "includes/enquiry_form.html" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

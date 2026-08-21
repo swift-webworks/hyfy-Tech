@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'core:services' %}">Services</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ service.name }}</li>
+      </ol>
+    </nav>
+    <h1>{{ service.name }}</h1>
+    <p class="lead">{{ service.short_description }}</p>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <img src="{{ service.image.url }}" alt="{{ service.name }}" class="img-fluid rounded-4 shadow">
+      </div>
+      <div class="col-lg-6">
+        <h2 class="h4">Overview</h2>
+        <p>{{ service.description|default:service.short_description|linebreaks }}</p>
+
+        {% if service.brands.exists %}
+        <h2 class="h4 mt-4">Available Brands</h2>
+        <div class="d-flex flex-wrap gap-2">
+          {% for brand in service.brands.all %}
+            <span class="badge-category">{{ brand.name }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <a href="{% url 'core:contact' %}" class="btn btn-cta btn-lg mt-4">Get a Free Quote &rarr;</a>
+      </div>
+    </div>
+
+    {% if related_services %}
+    <h2 class="section-title text-center mt-5">Related Services</h2>
+    <div class="row g-4 mt-2">
+      {% for related in related_services %}
+      <div class="col-md-4">
+        <div class="service-card h-100">
+          <img src="{{ related.image.url }}" alt="{{ related.name }}" class="service-card-img" loading="lazy">
+          <div class="service-card-body">
+            <h3 class="h5">{{ related.name }}</h3>
+            <p>{{ related.short_description }}</p>
+            <a href="{{ related.get_absolute_url }}" class="explore-link">Explore Service &rarr;</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block structured_data %}
+{{ block.super }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ service.name|escapejs }}",
+  "serviceType": "{{ service.category.name|escapejs }}",
+  "areaServed": "Chennai, Tamil Nadu",
+  "provider": {"@type": "LocalBusiness", "name": "HY-FY Technology"}
+}
+</script>
+{% endblock %}
