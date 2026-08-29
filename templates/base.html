@@ -82,7 +82,13 @@
 <div class="fab-menu" id="fabMenu">
   <div class="fab-options">
     <a href="https://wa.me/{{ WHATSAPP_NUMBER }}" target="_blank" rel="noopener" class="fab-option fab-whatsapp" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+    {% if WHATSAPP_NUMBER_2 %}
+    <a href="https://wa.me/{{ WHATSAPP_NUMBER_2 }}" target="_blank" rel="noopener" class="fab-option fab-whatsapp" aria-label="Chat on WhatsApp (alternate number)"><i class="bi bi-whatsapp"></i></a>
+    {% endif %}
     <a href="tel:{{ COMPANY_PHONE }}" class="fab-option fab-call" aria-label="Call us"><i class="bi bi-telephone-fill"></i></a>
+    {% if COMPANY_PHONE_2 %}
+    <a href="tel:{{ COMPANY_PHONE_2 }}" class="fab-option fab-call" aria-label="Call us (alternate number)"><i class="bi bi-telephone-fill"></i></a>
+    {% endif %}
     <a href="{% url 'core:contact' %}#enquiry" class="fab-option fab-quote" aria-label="Request a quote"><i class="bi bi-file-earmark-text-fill"></i></a>
   </div>
   <button type="button" class="fab-toggle" id="fabToggle" aria-label="Open contact options" aria-expanded="false">

@@ -18,6 +18,7 @@
 
   /* Gold highlight — dedicated to anything needing visibility: links, hover, badges */
   --highlight:       #E0A952;
+  --heading-black:   #000000;
   --highlight-light: #E6B175;
   --highlight-deep:  #A8763E;
 
@@ -36,6 +37,7 @@
   --gradient-sheen:   linear-gradient(120deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 40%);
   --shadow-velvet:    0 10px 30px rgba(16,21,26,.5);
   --shadow-gold-glow: 0 0 0 1px rgba(224,158,82,.5), 0 8px 24px rgba(16,21,26,.4);
+    --text-halo:        0 0 1px rgba(255,255,255,.9), 0 0 7px rgba(255,255,255,.3);
   --radius-lg: 1.75rem;
   --radius-md: 1.25rem;
   --radius-sm: 0.9rem;
@@ -66,7 +68,7 @@ h1, h2, h3, h4,
 .trust-card-content strong {
   font-family: "Playfair Display", serif;
   font-weight: 700;
-  color: var(--silk);
+  color: var(--heading-black);
 }
 p { color: var(--silk-dim); }
 a { color: var(--highlight); }
@@ -194,11 +196,11 @@ a { color: var(--highlight); }
   border-top: 3px solid var(--accent);
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 }
-.page-header h1 { color: var(--silk); }
+.page-header h1 { color: var(--heading-black); }
 .page-header .lead { color: var(--silk-dim); }
 .breadcrumb a { color: var(--highlight); }
 .breadcrumb-item.active { color: var(--silk-dim); }
-
+.section-title { font-size: 1.8rem; margin-bottom: .5rem; color: var(--heading-black); }0
 /* ---------- Service cards ---------- */
 .service-card {
   background: var(--gradient-card);
