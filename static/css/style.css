@@ -200,7 +200,7 @@ a { color: var(--highlight); }
 .page-header .lead { color: var(--silk-dim); }
 .breadcrumb a { color: var(--highlight); }
 .breadcrumb-item.active { color: var(--silk-dim); }
-.section-title { font-size: 1.8rem; margin-bottom: .5rem; color: var(--heading-black); }0
+.section-title { font-size: 1.8rem; margin-bottom: .5rem; color: var(--heading-black); }
 /* ---------- Service cards ---------- */
 .service-card {
   background: var(--gradient-card);
