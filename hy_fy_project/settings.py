@@ -90,6 +90,7 @@ ASGI_APPLICATION = "hy_fy_project.asgi.application"
 # Production: set DATABASE_URL, e.g.
 #   postgres://USER:PASSWORD@HOST:PORT/NAME
 # ---------------------------------------------------------------------------
+import dj_database_url
 DATABASES = {
     "default": env.db(
         "DATABASE_URL",
@@ -126,7 +127,7 @@ STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
