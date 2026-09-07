@@ -103,6 +103,8 @@ a { color: var(--highlight); }
   box-shadow: var(--shadow-velvet);
   border-bottom: 1px solid rgba(255,255,255,.2);
 }
+.navbar-logo { height: 44px; width: 44px; display: block; border-radius: 50%; }
+@media (max-width: 576px) { .navbar-logo { height: 36px; } }
 .hyfy-navbar .nav-link { color: var(--silk-dim) !important; }
 .hyfy-navbar .nav-link:hover, .hyfy-navbar .nav-link:focus { color: var(--highlight) !important; }
 .navbar-brand { font-weight: 800; color: var(--silk) !important; }
